@@ -6,6 +6,7 @@ class App extends Component {
     return (
       <div className="App">
          <h3>360enlight</h3>
+         <p>Oh wow!</p>
       </div>
     );
   }
