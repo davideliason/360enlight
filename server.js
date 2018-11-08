@@ -3,8 +3,11 @@ const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 8080
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
 
 require('dotenv').config();
+const uri = process.env.MLAB;
+
 
 var data = [
     {
@@ -27,6 +30,10 @@ app.use(
 )
 app.use(bodyParser.json())
 
+mongoose.connect(uri,{ useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+console.log('db connection established');
 
 app.get('/api/users',(req,res,next)=> {
     res.json(data)
