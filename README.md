@@ -13,4 +13,6 @@ The codebase for spinning up the backend on an EC2 instance on the AWS cloud pla
   4.1 Add PM2 module and config so that the server will keep running even after SSH connection is broken
   4.2 install local, to the EC2 instance, MongoDB instance
 5. Back to coding on repo, installed client with CRA, added proxy pointing to EC2 port
+6. On the backend, created route for serving API JSON data (hard-coded right now), and default routes point to static files of CRA
+  6.1 to keep the EC2 instance running, 'npm i --save pm2' and then 'pm2 start server.js' to keep it running
 
