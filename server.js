@@ -4,6 +4,7 @@ const path = require('path');
 const PORT = process.env.PORT || 8080
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
+const User = require('./models/user.js');
 
 require('dotenv').config();
 const uri = process.env.MLAB;
@@ -39,9 +40,30 @@ app.get('/api/users',(req,res,next)=> {
     res.json(data)
    });
 
-app.post('/user/',(req,res) => {
-    console.log(req.body.username);
-})
+app.post('/user/', (req,res) => {
+    console.log(req.body);
+    const { username, password } = req.body;
+  
+    const newUser = new User({
+      'username': username,
+      'password': password
+    })
+  
+    User.findOne( { 'username': username }, (err, userMatch) => {
+        if (userMatch) {
+        console.log("there is a user with that name")
+              return res.json({
+                  error: `Sorry, already a user with the username: ${username}`
+              })
+      } 
+      else {
+        newUser.save(function (err, newUser) {
+          if(err) return console.error(er);
+          console.log("new user saved to db");
+        });
+      }
+    });
+  });
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
