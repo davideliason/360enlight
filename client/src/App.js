@@ -13,9 +13,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-         <h3>360enlight</h3>
+         <h1>360enlight</h1>
          <p>Be present even when you are far away</p>
-        <h1>Users</h1>
+        <h3>Users</h3>
         {this.state.users.map(user =>
           <div key={user.id}>{user.name} says '{user.text}'</div>
         )}
