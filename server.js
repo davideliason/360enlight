@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 8080
-const SECRET = process.env.SECRET
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 const User = require('./models/user.js');
@@ -34,9 +33,14 @@ app.use(
 app.use(bodyParser.json())
 app.use(
     session({
-    secret: SECRET, //pick a random string to make the hash that is generated secure
+    secret: process.env.SECRET, 
     })
   )
+
+  app.use( (req, res, next) => {
+    console.log('req.session', req.session);
+    return next();
+  });
 
 mongoose.connect(uri,{ useNewUrlParser: true });
 var db = mongoose.connection;
