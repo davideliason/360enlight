@@ -3,9 +3,11 @@
 #### [David Eliason](http://www.davethemaker.com)
 
 ### Description
-The codebase for spinning up the backend on an EC2 instance on the AWS cloud platform and use of microservices.
+(v2.0) Code pivot to using a serverless architecture.
 
-### Dev Notes
+(v1.0) The first version spun up an Express server on an Ubuntu 16.04 EC2 instnace acting as an API endpoint connected to mongoDB instance. On the client side was a CRA obtained JSON values using fetch/axios then parsing them via parent and child components. Included React Router and form for saving new data
+
+### Dev Notes for v1.0
 1. Created VPC with a public-facing subnet/route table linked to Internet Gateway, and a private subnet attached to default route table
 2. Created Ubuntu EC2 instance within public subnet
 3. Installed Node.js, Nginx on the EC2
